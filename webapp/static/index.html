@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MaskSim Explorer — AI image detection</title>
+<link rel="stylesheet" href="/static/styles.css?v=20260929a">
+</head><body>
+
+<header><div class="wrap hdr">
+  <div class="logo"><span class="dot"></span>MaskSim Explorer</div>
+  <span class="badge" id="devbadge">loading…</span>
+  <nav><a href="/" class="on">Detect</a><a href="/learn">How it works</a></nav>
+</div></header>
+
+<div class="wrap">
+
+  <!-- ============ upload ============ -->
+  <section id="uploadSec">
+    <div class="drop" id="drop">
+      <h3>Drop an image, or click to choose</h3>
+      <p>Must be at least 512×512. PNG keeps the fingerprint intact; JPEG weakens it.</p>
+      <div class="btnrow">
+        <button class="btn primary" id="pick">Choose file</button>
+        <button class="btn" data-sample="real">Try the sample REAL photo</button>
+        <button class="btn" data-sample="fake">Try the sample AI image</button>
+      </div>
+      <input type="file" id="file" accept="image/*" class="hide">
+    </div>
+    <div id="err" class="err hide" style="margin-top:16px"></div>
+  </section>
+
+  <section id="loading" class="hide">
+    <div class="spinner"></div>
+    <p style="text-align:center;color:var(--ink-3)">Running seven detectors over the frequency spectrum…</p>
+  </section>
+
+  <!-- ============ results ============ -->
+  <div id="results" class="hide">
+
+    <section><div class="verdict" id="verdict">
+      <svg class="ring" id="ring" viewBox="0 0 120 120"></svg>
+      <div>
+        <div class="lbl">Generic model — best of seven, re-calibrated</div>
+        <div class="big" id="vLabel">—</div>
+        <div class="sub" id="vSub"></div>
+        <div class="meta" id="vMeta"></div>
+        <div class="btnrow" style="justify-content:flex-start;margin-top:14px">
+          <a class="btn" href="/learn" id="toLearn">Take this image apart in “How it works” →</a>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="n" id="vFpr">—</div>
+        <div class="u">false-positive rate</div>
+      </div>
+    </div></section>
+
+    <!-- pipeline -->
+    <section><div class="panel">
+      <h2>The pipeline, on your image</h2>
+      <p class="hint">Every stage the detector actually computed. Click one to read what it does.</p>
+      <div class="stages" id="stages"></div>
+      <div class="stagenote" id="stageNote"></div>
+    </div></section>
+
+    <!-- scores -->
+    <section><div class="grid g2">
+      <div class="panel">
+        <h2>Seven detectors, seven answers</h2>
+        <p class="hint">Bar length is <strong>1 − FPR</strong>: how far up the distribution of genuine
+           photographs this image sits for each detector. <strong>Longer is more suspicious.</strong>
+           The number on the right is the false-positive rate itself — the share of real photographs
+           that would score at least this high.</p>
+        <svg id="fprChart" style="width:100%;height:290px"></svg>
+        <div class="legend">
+          <span><i style="background:var(--crit)"></i>≤1% very likely</span>
+          <span><i style="background:var(--serious)"></i>≤5% likely</span>
+          <span><i style="background:var(--warn)"></i>≤10% possible</span>
+          <span><i style="background:var(--ink-3)"></i>&gt;10% no evidence</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Detail</h2>
+        <p class="hint">Raw scores are <em>not</em> comparable between detectors — each was trained
+           separately with its own logistic scale. Compare the FPR column instead.</p>
+        <table id="tbl"><thead><tr>
+          <th>Generator</th><th class="num">Raw score</th><th class="num">FPR</th><th>Verdict</th>
+        </tr></thead><tbody></tbody></table>
+      </div>
+    </div></section>
+
+    <!-- explorer -->
+    <section><div class="panel">
+      <h2>Frequency explorer</h2>
+      <p class="hint">What each detector looked at. DC is at the centre; distance from centre =
+         how fast the pattern repeats. Hover to read a bin's coordinates.</p>
+      <div class="grid g2" style="grid-template-columns:1.1fr .9fr">
+        <div>
+          <div class="tabs" id="detTabs"></div>
+          <div class="tabs" id="layerTabs">
+            <button class="tab on" data-layer="simmap">Similarity map</button>
+            <button class="tab" data-layer="mask">Learned mask</button>
+            <button class="tab" data-layer="masked">Masked spectrum</button>
+          </div>
+          <div class="mapwrap" id="mapWrap">
+            <img id="mapImg" alt="frequency map">
+            <div class="readout" id="readout">hover to inspect</div>
+          </div>
+          <div class="legend" id="layerLegend"></div>
+        </div>
+        <div>
+          <h2 style="margin-bottom:10px">Radial energy profile</h2>
+          <p class="hint">Average log-magnitude versus distance from DC. A camera photograph falls
+             away smoothly (roughly 1/f). A bump partway out means periodic structure.</p>
+          <svg id="radial" style="width:100%;height:230px"></svg>
+          <div class="stagenote" id="explainNote" style="margin-top:16px"></div>
+        </div>
+      </div>
+    </div></section>
+  </div>
+</div>
+
+<footer><div class="wrap">
+  MaskSim (Li et al., CVPRW 2024) · scores, checkpoints and calibration tables come from the
+  original implementation — this interface only visualises them. A detector reports evidence for a
+  <em>specific generator</em>; absence of evidence is not evidence of authenticity.
+</div></footer>
+
+<script src="/static/app.js?v=20260929a"></script>
+</body></html>

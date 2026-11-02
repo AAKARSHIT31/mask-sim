@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How it works — MaskSim Explorer</title>
+<link rel="stylesheet" href="/static/styles.css?v=20260929a">
+</head><body>
+
+<header><div class="wrap hdr">
+  <div class="logo"><span class="dot"></span>MaskSim Explorer</div>
+  <span class="badge">everything below is computed live in your browser</span>
+  <nav><a href="/">Detect</a><a href="/learn" class="on">How it works</a></nav>
+</div></header>
+
+<div class="wrap">
+
+<section>
+  <h1 style="font-size:36px;letter-spacing:-.025em;max-width:22ch">Why a Fourier transform
+    catches AI images</h1>
+  <p class="lead">A generative model does not paint pixels one at a time. It builds a small,
+  coarse representation of the picture and then <strong>upsamples</strong> it, several times over,
+  until it is full size. The filters that do that upsampling are <em>learned weights</em>, not
+  mathematically ideal interpolators, and they are the <em>same weights for every image the model
+  ever makes</em>. So every output carries a faint, repeating residue: a periodic pattern a fraction
+  of one grey level deep.</p>
+
+  <p class="lead">In the pixel domain that residue is hopeless — a whisper spread over 250,000
+  pixels, far below the noise. The discrete Fourier transform changes the accounting. It collects
+  everything that repeats at a given rate into a single coefficient, so a whisper spread over the
+  whole image becomes a handful of bright dots at fixed coordinates. The detector never looks at the
+  picture. It looks at those coordinates.</p>
+
+  <p class="lead">Upload an image and it is carried through the detector one stage at a time —
+  the crop, the residual, the spectrum, the mask, the comparison, the score — with the real
+  tensors drawn at every step, ending in <a href="#judge">the verdict</a> from the seven trained
+  checkpoints. Nothing on this page is simulated, and nothing is added to your image.</p>
+
+  <p class="lead" style="color:var(--ink-3);font-size:14.5px">The default is the standard
+  <em>cameraman</em> tile, used only so the page has something to draw before you upload. Steps 1
+  to 3 are interactive tools for reading a spectrum; Step 4 is the detector itself, running on your
+  picture.</p>
+</section>
+
+<!-- ========================= SOURCE BAR ========================= -->
+<section id="srcSec">
+  <div class="panel srcbar">
+    <div class="srcthumbwrap">
+      <img id="srcThumb" alt="current image">
+      <span class="srctag" id="srcTag">sample</span>
+    </div>
+    <div class="srcmeta">
+      <div class="lbl2">The page is teaching on</div>
+      <div class="srcname" id="srcName">…</div>
+      <div class="srchow" id="srcHow"></div>
+      <div class="btnrow" style="justify-content:flex-start;margin-top:12px">
+        <button class="btn primary" id="srcPick">Upload an image</button>
+        <button class="btn" id="srcSample">Use the sample photo</button>
+        <a class="btn" href="/">Full detector report →</a>
+        <input type="file" id="srcFile" accept="image/*" class="hide">
+      </div>
+      <p class="srchow" style="margin-top:12px;max-width:62ch">Every canvas below is computed from
+        this image — the spectra, the reconstruction, and the detector walkthrough in
+        <a href="#judge">Step 4</a>. An image of at least 512×512 is scored by the seven trained
+        checkpoints; a smaller one still drives every other figure.</p>
+      <div id="srcMsg" class="srcmsg hide"></div>
+    </div>
+    <div class="srcverdict" id="srcVerdict"></div>
+  </div>
+</section>
+
+<!-- ========================= VOCABULARY ========================= -->
+<section><div class="panel">
+  <h2>The vocabulary, in one panel</h2>
+  <p class="hint">Four terms are used throughout. Nothing else is needed.</p>
+  <div class="grid g4">
+    <div class="note" style="border-color:var(--c1)"><strong>Spatial domain</strong><br>
+      The picture as you see it: a grid of brightness values. "Pixel (120, 40) is fairly dark."</div>
+    <div class="note" style="border-color:var(--c1)"><strong>Frequency domain</strong><br>
+      The same picture as a recipe of stripe patterns. "There is a strong pattern repeating every
+      four pixels, running diagonally."</div>
+    <div class="note" style="border-color:var(--c2)"><strong>Bin</strong><br>
+      One entry in the frequency-domain grid — one specific stripe pattern. A 478×478 spectrum has
+      228,484 of them. The mask holds one number per bin.</div>
+    <div class="note" style="border-color:var(--c3)"><strong>Fingerprint</strong><br>
+      Energy that appears at the <em>same bins in every image a given model makes</em>, because it
+      comes from that model's fixed weights rather than from the scene.</div>
+  </div>
+</div></section>
+
+<!-- ========================= 1 ========================= -->
+<section><div class="panel">
+  <h2>How to read a spectrum</h2>
+  <p class="hint">Drag the sliders. Left is an image; right is its spectrum. A single frequency is
+     always <em>two</em> dots, symmetric about the centre.</p>
+  <div class="grid g2">
+    <div><canvas id="waveC" width="256" height="256"></canvas><div class="cap">the image</div></div>
+    <div><canvas id="waveF" width="256" height="256"></canvas><div class="cap">its spectrum (DC centred)</div></div>
+  </div>
+  <div class="ctl"><label>Vertical frequency (k<sub>y</sub>)</label>
+    <input type="range" id="ky" min="0" max="60" value="0"><output id="kyO">0</output></div>
+  <div class="ctl"><label>Horizontal frequency (k<sub>x</sub>)</label>
+    <input type="range" id="kx" min="0" max="60" value="6"><output id="kxO">6</output></div>
+  <div class="grid g2">
+    <div class="note"><strong>Reading the spectrum.</strong> <em>Distance</em> from the centre = how
+      fast the stripes repeat: near the middle is slow and broad, out at the edge is a pattern that
+      flips every two pixels. <em>Direction</em> from the centre = which way the stripes run. That is
+      the whole vocabulary — every point in the right-hand picture is one stripe pattern, and its
+      brightness is how much of that pattern the image contains.</div>
+    <div class="note"><strong>Why two dots?</strong> The image is real-valued, so the spectrum is
+      symmetric: whatever sits at (k<sub>y</sub>, k<sub>x</sub>) is mirrored at
+      (−k<sub>y</sub>, −k<sub>x</sub>). Set both sliders to zero and the two dots merge in the middle
+      — that single bin is called <strong>DC</strong>, and it is just the average brightness of the
+      whole image.</div>
+  </div>
+</div></section>
+
+<!-- ========================= 2 · PROBE ========================= -->
+<section><div class="panel">
+  <h2>Step 1 · Your image, in the frequency domain</h2>
+  <p class="hint">Now the real thing. Move the pointer across the spectrum of <em>your</em> image;
+     the third panel draws the single stripe pattern that bin stands for, at the amplitude and angle
+     it actually has in your picture. <strong>Click to lock a bin</strong>, click again to release.</p>
+
+  <div class="tabs" id="specTabs">
+    <button class="tab on" data-spec="image">Spectrum of the image</button>
+    <button class="tab" data-spec="residual">Spectrum of the residual — what the detector sees</button>
+  </div>
+
+  <div class="grid g3">
+    <div>
+      <div class="canvaswrap" id="specWrap">
+        <canvas id="specC" width="256" height="256"></canvas>
+        <div class="readout" id="specRead">hover the spectrum</div>
+      </div>
+      <div class="cap">log |DFT|, DC at the centre · click to lock</div>
+    </div>
+    <div>
+      <canvas id="probeSrc" width="256" height="256"></canvas>
+      <div class="cap" id="probeSrcCap">the signal this spectrum came from</div>
+    </div>
+    <div>
+      <canvas id="probeWave" width="256" height="256"></canvas>
+      <div class="cap" id="probeWaveCap">this one frequency, on its own</div>
+    </div>
+  </div>
+
+  <div class="livestrip" id="probeStats" style="margin-top:18px"></div>
+
+  <div class="grid g2" style="margin-top:20px;align-items:start">
+    <div>
+      <div class="lbl2" style="margin-bottom:6px">How the energy is spread, centre → edge</div>
+      <svg id="probeRadial" style="width:100%;height:200px"></svg>
+    </div>
+    <div class="note" id="probeNote" style="margin-top:22px"></div>
+  </div>
+
+  <div class="note" style="border-color:var(--c2)"><strong>Switch to the residual tab and watch the
+    whole picture change.</strong> The image spectrum is a bright blob at the centre — photographic
+    content, drowning everything. The residual spectrum is almost flat, because the denoiser has
+    removed the scene. Only in that second picture is there any hope of seeing a fingerprint, and
+    that is the one the detector actually computes.</div>
+</div></section>
+
+<!-- ========================= 3 ========================= -->
+<section><div class="panel">
+  <h2>Step 2 · Your image is just a sum of those stripes</h2>
+  <p class="hint">Keep only the strongest N% of frequency coefficients and rebuild the picture.</p>
+  <div class="grid g3">
+    <div><canvas id="origC" width="256" height="256"></canvas><div class="cap">the original</div></div>
+    <div><canvas id="recC" width="256" height="256"></canvas><div class="cap" id="recCap">rebuilt</div></div>
+    <div><canvas id="recF" width="256" height="256"></canvas><div class="cap">which coefficients were kept</div></div>
+  </div>
+  <div class="ctl"><label>Coefficients kept</label>
+    <input type="range" id="keep" min="1" max="1000" value="120"><output id="keepO">1.2%</output></div>
+  <div class="grid g2">
+    <div class="note">Around <strong>1%</strong> of the coefficients is already recognisable, and
+      nothing was invented to get there — those numbers were always in the image. The DFT is a
+      lossless change of basis: 65,536 pixels in, 65,536 coefficients out, and an exact inverse.
+      This is also, in one sentence, why JPEG works.</div>
+    <div class="note">Notice <em>where</em> the kept coefficients are (third panel): clustered tight
+      around the centre. Photographic content is overwhelmingly low-frequency. Push the slider up and
+      watch the new dots appear out towards the edges, adding fine texture and sharp edges — and
+      almost nothing you would call "the picture".</div>
+  </div>
+</div></section>
+
+<!-- ========================= 4 ========================= -->
+<section><div class="panel">
+  <h2>Step 3 · Content lives in the middle, fingerprints live outside</h2>
+  <p class="hint">Split your image's spectrum at a radius and rebuild each half separately. This is
+     why MaskSim can afford to ignore most of the picture.</p>
+  <div class="grid g3">
+    <div><canvas id="lpC" width="256" height="256"></canvas><div class="cap">keep only the CENTRE → the scene</div></div>
+    <div><canvas id="hpC" width="256" height="256"></canvas><div class="cap">keep only the OUTSIDE → texture &amp; edges</div></div>
+    <div><canvas id="splitF" width="256" height="256"></canvas><div class="cap">the cut radius</div></div>
+  </div>
+  <div class="ctl"><label>Cut radius</label>
+    <input type="range" id="rad" min="3" max="120" value="18"><output id="radO">18</output></div>
+  <div class="grid g2">
+    <div class="note"><strong>The two signals separate by position.</strong> Image content varies
+      wildly from photograph to photograph and sits near DC. A generator's fingerprint sits far out
+      and is identical in every image that model makes. The Fourier transform puts them in different
+      places — which is exactly what makes a <em>static</em> mask, one fixed number per bin, enough
+      to tell them apart.</div>
+    <div class="note"><strong>This is also the whole reason the detector denoises first.</strong>
+      Pull the radius down to 5 and look at the left panel: still clearly the scene. The content is
+      thousands of times stronger than anything a generator leaves behind, so it has to go before
+      the comparison, or it drowns everything.</div>
+  </div>
+</div></section>
+
+<!-- ========================= 4 · THE PIPELINE ON YOUR IMAGE ========================= -->
+<section id="judge">
+  <div class="labhead">
+    <div>
+      <h2 class="labtitle">Step 4 · Your image through the detector</h2>
+      <p class="lead" style="font-size:15px;margin-top:8px;max-width:90ch">Eight stages, in order,
+      each one drawn from the tensor the trained model actually computed on your picture. Nothing is
+      added to the image and nothing is simulated — these are the seven real checkpoints from the
+      paper, and the numbers are identical to what <span class="kbd">detect_one_image.py</span>
+      prints.</p>
+    </div>
+    <span class="badge" id="judgeStatus">…</span>
+  </div>
+  <div id="judgeBody"></div>
+</section>
+
+<!-- ========================= KEY NUMBERS ========================= -->
+<section><div class="panel">
+  <h2>The real model, in numbers</h2>
+  <p class="hint">What the checkpoints in this repository actually contain.</p>
+  <div class="grid g4">
+    <div class="stattile"><b>685,926</b><span>mask values — 3 × 478 × 478, one per frequency bin,
+      each squashed into [0, 1]</span></div>
+    <div class="stattile"><b>685,926</b><span>reference values — the same shape again: what this
+      generator's fingerprint is supposed to look like</span></div>
+    <div class="stattile"><b>11</b><span>every other learned parameter: nine for the 1×1 colour
+      convolution, two for the logistic</span></div>
+    <div class="stattile"><b>0</b><span>convolutional feature extractors. There is no backbone, no
+      ResNet, no transformer anywhere in the model</span></div>
+    <div class="stattile"><b>7</b><span>separate detectors, one per generator — SD 1, SD 2, SD-XL,
+      DALL·E 2, DALL·E 3, Midjourney, Firefly</span></div>
+    <div class="stattile"><b>≈ 12,000</b><span>real photographs per generator in the calibration
+      tables, from COCO and FlickrFaces</span></div>
+    <div class="stattile"><b>512 → 478</b><span>crop size, then the DnCNN's 17-pixel invalid border
+      removed from every edge</span></div>
+    <div class="stattile"><b>~3 h</b><span>to train one detector on the paper's hardware. The
+      expensive part is reading images, not the maths</span></div>
+  </div>
+</div></section>
+
+<!-- ========================= LIMITS ========================= -->
+<section><div class="panel">
+  <h2>What it cannot do</h2>
+  <p class="hint">Worth saying out loud before anyone asks. None of these are bugs; they follow
+     directly from the design.</p>
+  <div class="grid g2">
+    <div class="note" style="border-color:var(--crit)"><strong>Rescaling defeats it.</strong>
+      The mask watches fixed coordinates, so the image must be at its original sampling rate.
+      Resize by a few percent and the peaks land between the bins the mask is open at. Nearly every
+      image that has passed through a social network has been resized. You can see this happen in
+      the lab above.</div>
+    <div class="note" style="border-color:var(--crit)"><strong>It fails by going blind.</strong>
+      An image from a generator no detector was trained on scores like a photograph. That is a false
+      <em>negative</em> — it will never invent an accusation — which is the safe direction to fail
+      in, but it is silent: nothing looks broken when it stops working.</div>
+    <div class="note" style="border-color:var(--crit)"><strong>"No evidence" ≠ "authentic".</strong>
+      Each detector answers one narrow question: <em>does this carry this particular generator's
+      fingerprint?</em> Seven "no"s mean seven specific models left no trace. They do not mean a
+      camera took the picture.</div>
+    <div class="note" style="border-color:var(--crit)"><strong>Whole images only.</strong>
+      Inpainted or partially-edited images are out of scope by the authors' own statement: the
+      fingerprint covers only the regenerated region, and the global spectrum averages it away.</div>
+    <div class="note" style="border-color:var(--crit)"><strong>It is a decoder detector.</strong>
+      It transfers between models that share a decoder architecture and not otherwise. Trained on
+      SD 2 it scores 96.5 on SD-XL — same VAE family — but only 71.3 on DALL·E 2.</div>
+    <div class="note" style="border-color:var(--crit)"><strong>The spectrum has a known flaw.</strong>
+      A DFT treats the image as if it wrapped around, so the mismatch between opposite edges adds a
+      bright cross through the middle of every spectrum. The paper notes the fix
+      (periodic-plus-smooth decomposition) and does not apply it.</div>
+  </div>
+</div></section>
+
+</div>
+
+<footer><div class="wrap">Method: Li, Bammey, Gardella, Nikoukhah, Morel, Colom &amp; Grompone von Gioi,
+  <em>MaskSim: Detection of synthetic images by masked spectrum similarity analysis</em>, CVPRW 2024.
+  Fallback test image: the standard <em>cameraman</em> tile (MIT, via scikit-image). Every figure on
+  this page — the reference pattern and the calibration table in Step 6 —
+  is computed in your browser from the image in the source bar. Nothing is pre-rendered.
+</div></footer>
+
+<script src="/static/sample_data.js?v=20260929a"></script>
+<script src="/static/verdict.js?v=20260929a"></script>
+<script src="/static/learn.js?v=20260929a"></script>
+</body></html>

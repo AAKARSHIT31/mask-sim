@@ -1,0 +1,1235 @@
+[
+  {
+    "rel": "real_img.png",
+    "stem": "real_img",
+    "file": "real_img.png",
+    "truth": "real",
+    "caption": "Reference real photograph (MaskSim repository)",
+    "format": "PNG",
+    "native": [
+      512,
+      512
+    ],
+    "bytes": 399509,
+    "analysed": {
+      "width": 512,
+      "height": 512
+    },
+    "device": "cpu",
+    "seconds": 21.6,
+    "detectors": [
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.2114659696817398,
+        "calibrated": 0.8613266716275114,
+        "fpr": 0.13867332837248858,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.0005529615445993841,
+        "energy": 0.5356762409210205,
+        "positive_fraction": 0.5072477722728944
+      },
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.00048758817138150334,
+        "calibrated": 0.5636759859678963,
+        "fpr": 0.43632401403210375,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.00024405833391938359,
+        "energy": 0.5722061991691589,
+        "positive_fraction": 0.4951550217958369
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.03553032502532005,
+        "calibrated": 0.5121186350589986,
+        "fpr": 0.4878813649410014,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.4420073865912855e-05,
+        "energy": 0.4037790894508362,
+        "positive_fraction": 0.5065518810945187
+      },
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.0035388730466365814,
+        "calibrated": 0.4926118847666631,
+        "fpr": 0.5073881152333368,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.470241765375249e-05,
+        "energy": 0.5592260360717773,
+        "positive_fraction": 0.5043285306629786
+      },
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.0012455751420930028,
+        "calibrated": 0.32810672903157223,
+        "fpr": 0.6718932709684278,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.00017529097385704517,
+        "energy": 0.551078200340271,
+        "positive_fraction": 0.5048143414856182
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.003114334773272276,
+        "calibrated": 0.264962262145211,
+        "fpr": 0.735037737854789,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 8.115337550407276e-05,
+        "energy": 0.6023333072662354,
+        "positive_fraction": 0.5222553876857898
+      },
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.009027264080941677,
+        "calibrated": 0.22701179972361007,
+        "fpr": 0.7729882002763899,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.00015639518096577376,
+        "energy": 0.4331529140472412,
+        "positive_fraction": 0.5154584128429124
+      }
+    ],
+    "generic": {
+      "score": 0.8613266716275114,
+      "fpr": 0.5057935579887318,
+      "verdict": {
+        "label": "no evidence",
+        "level": 0
+      },
+      "best": "Firefly",
+      "best_key": "firefly",
+      "n_calibration": 18814
+    }
+  },
+  {
+    "rel": "fake_img.png",
+    "stem": "fake_img",
+    "file": "fake_img.png",
+    "truth": "synthetic",
+    "caption": "Reference synthetic image (MaskSim repository)",
+    "format": "PNG",
+    "native": [
+      512,
+      512
+    ],
+    "bytes": 587156,
+    "analysed": {
+      "width": 512,
+      "height": 512
+    },
+    "device": "cpu",
+    "seconds": 18.53,
+    "detectors": [
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.9752753973007202,
+        "calibrated": 0.9869777825023919,
+        "fpr": 0.013022217497608124,
+        "verdict": {
+          "label": "likely synthetic",
+          "level": 2
+        },
+        "n_calibration": 18814,
+        "peak": 0.00041639339178800583,
+        "energy": 0.5495704412460327,
+        "positive_fraction": 0.5078123632289351
+      },
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.35782966017723083,
+        "calibrated": 0.8935367279685341,
+        "fpr": 0.10646327203146588,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.00017398077761754394,
+        "energy": 0.5073603391647339,
+        "positive_fraction": 0.5086658146741129
+      },
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.003184179775416851,
+        "calibrated": 0.44578505368342725,
+        "fpr": 0.5542149463165728,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 7.821867620805278e-05,
+        "energy": 0.4770677387714386,
+        "positive_fraction": 0.4862835034400658
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.014861449599266052,
+        "calibrated": 0.40905708514935685,
+        "fpr": 0.5909429148506431,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.5528333430411294e-05,
+        "energy": 0.6861897706985474,
+        "positive_fraction": 0.5026260044467009
+      },
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.012746976688504219,
+        "calibrated": 0.32789412139895824,
+        "fpr": 0.6721058786010418,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.0005313092260621488,
+        "energy": 0.5599223375320435,
+        "positive_fraction": 0.4942227902172581
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.015936896204948425,
+        "calibrated": 0.2903157223344318,
+        "fpr": 0.7096842776655682,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 7.566843123640865e-05,
+        "energy": 0.4548962414264679,
+        "positive_fraction": 0.5082500306367186
+      },
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.01033210102468729,
+        "calibrated": 0.25544807058573404,
+        "fpr": 0.744551929414266,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 8.010510646272451e-05,
+        "energy": 0.5067850351333618,
+        "positive_fraction": 0.5157428966579717
+      }
+    ],
+    "generic": {
+      "score": 0.9869777825023919,
+      "fpr": 0.07016051876262352,
+      "verdict": {
+        "label": "possibly synthetic",
+        "level": 1
+      },
+      "best": "Stable Diffusion 1",
+      "best_key": "sd1",
+      "n_calibration": 18814
+    }
+  },
+  {
+    "rel": "data/test/kitten_real.jpg",
+    "stem": "kitten_real",
+    "file": "kitten_real.jpg",
+    "truth": "real",
+    "caption": "Photograph \u2014 kitten",
+    "format": "MPO",
+    "native": [
+      3336,
+      3000
+    ],
+    "bytes": 3590426,
+    "analysed": {
+      "width": 3336,
+      "height": 3000
+    },
+    "device": "cpu",
+    "seconds": 20.08,
+    "detectors": [
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.5956726670265198,
+        "calibrated": 0.9263314552992452,
+        "fpr": 0.07366854470075479,
+        "verdict": {
+          "label": "possibly synthetic",
+          "level": 1
+        },
+        "n_calibration": 18814,
+        "peak": 5.856937787029892e-05,
+        "energy": 0.4886316955089569,
+        "positive_fraction": 0.5145218045902558
+      },
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.2806355357170105,
+        "calibrated": 0.8913043478260869,
+        "fpr": 0.10869565217391308,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.0004497484478633851,
+        "energy": 0.5404710173606873,
+        "positive_fraction": 0.5141804240121847
+      },
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.00046020280569791794,
+        "calibrated": 0.5551716806633358,
+        "fpr": 0.4448283193366642,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.000208984172786586,
+        "energy": 0.5466852188110352,
+        "positive_fraction": 0.5002801071409815
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.012659578584134579,
+        "calibrated": 0.39518443712129264,
+        "fpr": 0.6048155628787073,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.009164695162326e-05,
+        "energy": 0.6135013103485107,
+        "positive_fraction": 0.5073265524062954
+      },
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.007607632782310247,
+        "calibrated": 0.19357924949505687,
+        "fpr": 0.8064207505049431,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 7.549063593614846e-05,
+        "energy": 0.49860039353370667,
+        "positive_fraction": 0.49635423049316363
+      },
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.000730635947547853,
+        "calibrated": 0.03401722121824174,
+        "fpr": 0.9659827787817583,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.763248944072984e-05,
+        "energy": 0.567460298538208,
+        "positive_fraction": 0.506621907879764
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.004139820113778114,
+        "calibrated": 0.018762623578186456,
+        "fpr": 0.9812373764218135,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.0725586334010586e-05,
+        "energy": 0.4170703887939453,
+        "positive_fraction": 0.4935312757129602
+      }
+    ],
+    "generic": {
+      "score": 0.9263314552992452,
+      "fpr": 0.3188582970128627,
+      "verdict": {
+        "label": "no evidence",
+        "level": 0
+      },
+      "best": "Stable Diffusion 2",
+      "best_key": "sd2",
+      "n_calibration": 18814
+    }
+  },
+  {
+    "rel": "data/test/mountain_real.jpg",
+    "stem": "mountain_real",
+    "file": "mountain_real.jpg",
+    "truth": "real",
+    "caption": "Photograph \u2014 mountain landscape",
+    "format": "JPEG",
+    "native": [
+      2732,
+      2732
+    ],
+    "bytes": 1006732,
+    "analysed": {
+      "width": 2732,
+      "height": 2732
+    },
+    "device": "cpu",
+    "seconds": 18.45,
+    "detectors": [
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.15622617304325104,
+        "calibrated": 0.8405442755394918,
+        "fpr": 0.15945572446050815,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.531766535365023e-05,
+        "energy": 0.5040569305419922,
+        "positive_fraction": 0.5077335830955341
+      },
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.1736600697040558,
+        "calibrated": 0.8380992877644308,
+        "fpr": 0.16190071223556923,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 7.63771022320725e-05,
+        "energy": 0.4692504405975342,
+        "positive_fraction": 0.5164431645104253
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.0491061769425869,
+        "calibrated": 0.5738811523333688,
+        "fpr": 0.4261188476666312,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 3.827362525044009e-05,
+        "energy": 0.43877869844436646,
+        "positive_fraction": 0.5131737889742827
+      },
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.024845806881785393,
+        "calibrated": 0.47746359094291485,
+        "fpr": 0.5225364090570852,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.00054998166160658,
+        "energy": 0.5300815105438232,
+        "positive_fraction": 0.5099481801789184
+      },
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.003271831665188074,
+        "calibrated": 0.45811629637503987,
+        "fpr": 0.5418837036249602,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.1778268496273085e-05,
+        "energy": 0.46515050530433655,
+        "positive_fraction": 0.48233574342185886
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.005142962094396353,
+        "calibrated": 0.3152971191665781,
+        "fpr": 0.6847028808334219,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.1691182306967676e-05,
+        "energy": 0.6465021371841431,
+        "positive_fraction": 0.523310166138548
+      },
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.0001407990203006193,
+        "calibrated": 0.2705963644094823,
+        "fpr": 0.7294036355905177,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 8.420771337114275e-05,
+        "energy": 0.5266499519348145,
+        "positive_fraction": 0.49635860716724145
+      }
+    ],
+    "generic": {
+      "score": 0.8405442755394918,
+      "fpr": 0.5522483257148931,
+      "verdict": {
+        "label": "no evidence",
+        "level": 0
+      },
+      "best": "Stable Diffusion 2",
+      "best_key": "sd2",
+      "n_calibration": 18814
+    }
+  },
+  {
+    "rel": "data/test/cat.jpg",
+    "stem": "cat",
+    "file": "cat.jpg",
+    "truth": "real",
+    "caption": "Photograph \u2014 cat",
+    "format": "JPEG",
+    "native": [
+      1370,
+      1148
+    ],
+    "bytes": 494232,
+    "analysed": {
+      "width": 1370,
+      "height": 1148
+    },
+    "device": "cpu",
+    "seconds": 19.5,
+    "detectors": [
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.9271602034568787,
+        "calibrated": 0.9904326565323696,
+        "fpr": 0.00956734346763044,
+        "verdict": {
+          "label": "very likely synthetic",
+          "level": 3
+        },
+        "n_calibration": 18814,
+        "peak": 7.444431685144082e-05,
+        "energy": 0.49189817905426025,
+        "positive_fraction": 0.5254328530662978
+      },
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.829193651676178,
+        "calibrated": 0.9792707558201339,
+        "fpr": 0.020729244179866102,
+        "verdict": {
+          "label": "likely synthetic",
+          "level": 2
+        },
+        "n_calibration": 18814,
+        "peak": 0.0005131778307259083,
+        "energy": 0.5544366836547852,
+        "positive_fraction": 0.5098518933492061
+      },
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.08272595703601837,
+        "calibrated": 0.7946210268948656,
+        "fpr": 0.20537897310513442,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 8.09030098025687e-05,
+        "energy": 0.497755765914917,
+        "positive_fraction": 0.5096593196897813
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.07473292201757431,
+        "calibrated": 0.5604337195705326,
+        "fpr": 0.43956628042946744,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.4375428589992225e-05,
+        "energy": 0.6360287666320801,
+        "positive_fraction": 0.5166401148439278
+      },
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.00043693394400179386,
+        "calibrated": 0.547570957797385,
+        "fpr": 0.45242904220261504,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.0002601503801997751,
+        "energy": 0.5236884951591492,
+        "positive_fraction": 0.4948399012622328
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.037098728120326996,
+        "calibrated": 0.5222706495163176,
+        "fpr": 0.47772935048368237,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 8.411251474171877e-05,
+        "energy": 0.44866132736206055,
+        "positive_fraction": 0.5153533726650443
+      },
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.0014648066135123372,
+        "calibrated": 0.14754969703412352,
+        "fpr": 0.8524503029658765,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.188098318991251e-05,
+        "energy": 0.524990439414978,
+        "positive_fraction": 0.4976190893016579
+      }
+    ],
+    "generic": {
+      "score": 0.9904326565323696,
+      "fpr": 0.05246093334750712,
+      "verdict": {
+        "label": "possibly synthetic",
+        "level": 1
+      },
+      "best": "DALL\u00b7E 3",
+      "best_key": "dalle3",
+      "n_calibration": 18814
+    }
+  },
+  {
+    "rel": "data/test/Adobe_Firefly_generated_landscape_photography.jpg",
+    "stem": "Adobe_Firefly_generated_landscape_photography",
+    "file": "Adobe_Firefly_generated_landscape_photography.jpg",
+    "truth": "synthetic",
+    "caption": "Adobe Firefly \u2014 landscape",
+    "format": "JPEG",
+    "native": [
+      960,
+      960
+    ],
+    "bytes": 291505,
+    "analysed": {
+      "width": 960,
+      "height": 960
+    },
+    "device": "cpu",
+    "seconds": 19.66,
+    "detectors": [
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.9885863661766052,
+        "calibrated": 0.9971829488678644,
+        "fpr": 0.002817051132135595,
+        "verdict": {
+          "label": "very likely synthetic",
+          "level": 3
+        },
+        "n_calibration": 18814,
+        "peak": 0.0002476296795066446,
+        "energy": 0.5392436981201172,
+        "positive_fraction": 0.5131869189965161
+      },
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.40621256828308105,
+        "calibrated": 0.9248432018709472,
+        "fpr": 0.07515679812905285,
+        "verdict": {
+          "label": "possibly synthetic",
+          "level": 1
+        },
+        "n_calibration": 18814,
+        "peak": 6.552860577357933e-05,
+        "energy": 0.4802851378917694,
+        "positive_fraction": 0.5259361705852489
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.42482802271842957,
+        "calibrated": 0.7619857552886149,
+        "fpr": 0.2380142447113851,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.798113877768628e-05,
+        "energy": 0.6721702218055725,
+        "positive_fraction": 0.5129724619667022
+      },
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.005293839145451784,
+        "calibrated": 0.6511640267885617,
+        "fpr": 0.34883597321143833,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 6.189173291204497e-05,
+        "energy": 0.5004972815513611,
+        "positive_fraction": 0.4964636473451095
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.0798320546746254,
+        "calibrated": 0.6491974061868822,
+        "fpr": 0.35080259381311785,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 4.764461118611507e-05,
+        "energy": 0.4456878900527954,
+        "positive_fraction": 0.5153446193168887
+      },
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.0008107071043923497,
+        "calibrated": 0.6238970979058148,
+        "fpr": 0.3761029020941852,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.9950558352284133e-05,
+        "energy": 0.5209872126579285,
+        "positive_fraction": 0.49819681027993207
+      },
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.00396071607246995,
+        "calibrated": 0.4746465398107792,
+        "fpr": 0.5253534601892208,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.47149138583336e-05,
+        "energy": 0.509687602519989,
+        "positive_fraction": 0.5054752192713713
+      }
+    ],
+    "generic": {
+      "score": 0.9971829488678644,
+      "fpr": 0.01663654725204633,
+      "verdict": {
+        "label": "likely synthetic",
+        "level": 2
+      },
+      "best": "Firefly",
+      "best_key": "firefly",
+      "n_calibration": 18814
+    }
+  },
+  {
+    "rel": "data/test/sdxl_text.jpg",
+    "stem": "sdxl_text",
+    "file": "sdxl_text.jpg",
+    "truth": "synthetic",
+    "caption": "Stable Diffusion XL \u2014 text scene",
+    "format": "JPEG",
+    "native": [
+      1024,
+      1024
+    ],
+    "bytes": 376920,
+    "analysed": {
+      "width": 1024,
+      "height": 1024
+    },
+    "device": "cpu",
+    "seconds": 19.82,
+    "detectors": [
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.9999978542327881,
+        "calibrated": 0.999893696183693,
+        "fpr": 0.00010630381630705177,
+        "verdict": {
+          "label": "very likely synthetic",
+          "level": 3
+        },
+        "n_calibration": 18814,
+        "peak": 0.00029860003269277513,
+        "energy": 0.5782169103622437,
+        "positive_fraction": 0.5639038182104655
+      },
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.5821930170059204,
+        "calibrated": 0.9252152652280217,
+        "fpr": 0.07478473477197833,
+        "verdict": {
+          "label": "possibly synthetic",
+          "level": 1
+        },
+        "n_calibration": 18814,
+        "peak": 7.625518628628924e-05,
+        "energy": 0.5180783271789551,
+        "positive_fraction": 0.5108453983648745
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.3463228940963745,
+        "calibrated": 0.8096630169023068,
+        "fpr": 0.1903369830976932,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.9131201851414517e-05,
+        "energy": 0.44706881046295166,
+        "positive_fraction": 0.5221197107893769
+      },
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.13004617393016815,
+        "calibrated": 0.8013181673222068,
+        "fpr": 0.19868183267779316,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.00042802756070159376,
+        "energy": 0.5584443807601929,
+        "positive_fraction": 0.49959296931076136
+      },
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.005804963875561953,
+        "calibrated": 0.7577867545444882,
+        "fpr": 0.24221324545551182,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.0001353300322080031,
+        "energy": 0.5114136934280396,
+        "positive_fraction": 0.500477057474484
+      },
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.041119690984487534,
+        "calibrated": 0.589242053789731,
+        "fpr": 0.41075794621026895,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 8.056818478507921e-05,
+        "energy": 0.456378698348999,
+        "positive_fraction": 0.522487351411915
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.002790098777040839,
+        "calibrated": 0.2544381843308175,
+        "fpr": 0.7455618156691826,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.6654807849554345e-05,
+        "energy": 0.666325569152832,
+        "positive_fraction": 0.5046042611298822
+      }
+    ],
+    "generic": {
+      "score": 0.999893696183693,
+      "fpr": 0.0010098862549166032,
+      "verdict": {
+        "label": "very likely synthetic",
+        "level": 3
+      },
+      "best": "Stable Diffusion XL",
+      "best_key": "sdxl",
+      "n_calibration": 18814
+    }
+  },
+  {
+    "rel": "data/test/stable-diffusion-demo-1-1.webp",
+    "stem": "stable-diffusion-demo-1-1",
+    "file": "stable-diffusion-demo-1-1.webp",
+    "truth": "synthetic",
+    "caption": "Stable Diffusion 1.x \u2014 demo image",
+    "format": "WEBP",
+    "native": [
+      1000,
+      738
+    ],
+    "bytes": 96212,
+    "analysed": {
+      "width": 1000,
+      "height": 738
+    },
+    "device": "cpu",
+    "seconds": 19.87,
+    "detectors": [
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.9125732779502869,
+        "calibrated": 0.9888912511959179,
+        "fpr": 0.01110874880408208,
+        "verdict": {
+          "label": "likely synthetic",
+          "level": 2
+        },
+        "n_calibration": 18814,
+        "peak": 0.00012974425044376403,
+        "energy": 0.47810259461402893,
+        "positive_fraction": 0.5358362073493111
+      },
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.9787735342979431,
+        "calibrated": 0.9879345168491549,
+        "fpr": 0.012065483150845102,
+        "verdict": {
+          "label": "likely synthetic",
+          "level": 2
+        },
+        "n_calibration": 18814,
+        "peak": 0.0003302275144960731,
+        "energy": 0.5236549377441406,
+        "positive_fraction": 0.5168764552441308
+      },
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.3199059069156647,
+        "calibrated": 0.9037418943340066,
+        "fpr": 0.09625810566599335,
+        "verdict": {
+          "label": "possibly synthetic",
+          "level": 1
+        },
+        "n_calibration": 18814,
+        "peak": 0.000798441469669342,
+        "energy": 0.5595812797546387,
+        "positive_fraction": 0.5039521366922848
+      },
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.016098713502287865,
+        "calibrated": 0.8477729350483683,
+        "fpr": 0.15222706495163174,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 9.127473458647728e-05,
+        "energy": 0.5145252346992493,
+        "positive_fraction": 0.5094448626599675
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.1678757220506668,
+        "calibrated": 0.7368449027320081,
+        "fpr": 0.2631550972679919,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 7.971078593982384e-05,
+        "energy": 0.45740222930908203,
+        "positive_fraction": 0.5188722186236235
+      },
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.023507777601480484,
+        "calibrated": 0.6814606144360582,
+        "fpr": 0.3185393855639418,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.00014687173825223,
+        "energy": 0.5076709389686584,
+        "positive_fraction": 0.5088365049631484
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.005598636344075203,
+        "calibrated": 0.32226001913468694,
+        "fpr": 0.6777399808653131,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.524808875634335e-05,
+        "energy": 0.6632735133171082,
+        "positive_fraction": 0.5102851840829117
+      }
+    ],
+    "generic": {
+      "score": 0.9888912511959179,
+      "fpr": 0.06027426384607204,
+      "verdict": {
+        "label": "possibly synthetic",
+        "level": 1
+      },
+      "best": "DALL\u00b7E 3",
+      "best_key": "dalle3",
+      "n_calibration": 18814
+    }
+  },
+  {
+    "rel": "data/test/Astronaut_Riding_a_Horse_(SD3.5).webp",
+    "stem": "Astronaut_Riding_a_Horse_SD3_5",
+    "file": "Astronaut_Riding_a_Horse_(SD3.5).webp",
+    "truth": "synthetic",
+    "caption": "Stable Diffusion 3.5 \u2014 astronaut (generator not in the trained set)",
+    "format": "WEBP",
+    "native": [
+      1024,
+      1024
+    ],
+    "bytes": 88204,
+    "analysed": {
+      "width": 1024,
+      "height": 1024
+    },
+    "device": "cpu",
+    "seconds": 20.05,
+    "detectors": [
+      {
+        "key": "sd2",
+        "name": "Stable Diffusion 2",
+        "score": 0.9254747629165649,
+        "calibrated": 0.9660890825980653,
+        "fpr": 0.03391091740193475,
+        "verdict": {
+          "label": "likely synthetic",
+          "level": 2
+        },
+        "n_calibration": 18814,
+        "peak": 6.430190842365846e-05,
+        "energy": 0.5101642608642578,
+        "positive_fraction": 0.5146618581607465
+      },
+      {
+        "key": "dalle3",
+        "name": "DALL\u00b7E 3",
+        "score": 0.656013011932373,
+        "calibrated": 0.9633783352822366,
+        "fpr": 0.0366216647177634,
+        "verdict": {
+          "label": "likely synthetic",
+          "level": 2
+        },
+        "n_calibration": 18814,
+        "peak": 0.0001050923892762512,
+        "energy": 0.4724466800689697,
+        "positive_fraction": 0.5266101783932354
+      },
+      {
+        "key": "sd1",
+        "name": "Stable Diffusion 1",
+        "score": 0.16241292655467987,
+        "calibrated": 0.901775273732327,
+        "fpr": 0.09822472626767298,
+        "verdict": {
+          "label": "possibly synthetic",
+          "level": 1
+        },
+        "n_calibration": 18814,
+        "peak": 7.795262354193255e-05,
+        "energy": 0.5122374296188354,
+        "positive_fraction": 0.5115412895432503
+      },
+      {
+        "key": "firefly",
+        "name": "Firefly",
+        "score": 0.2579359710216522,
+        "calibrated": 0.8824811310726055,
+        "fpr": 0.1175188689273945,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 0.000280732725514099,
+        "energy": 0.5460568070411682,
+        "positive_fraction": 0.5076898163547557
+      },
+      {
+        "key": "midjourney",
+        "name": "Midjourney",
+        "score": 0.4576056897640228,
+        "calibrated": 0.8400659083661104,
+        "fpr": 0.1599340916338896,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.4397107305703685e-05,
+        "energy": 0.4542602002620697,
+        "positive_fraction": 0.5344444249925596
+      },
+      {
+        "key": "sdxl",
+        "name": "Stable Diffusion XL",
+        "score": 0.006740518845617771,
+        "calibrated": 0.7216966089082598,
+        "fpr": 0.2783033910917402,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 8.973127842182294e-05,
+        "energy": 0.49421948194503784,
+        "positive_fraction": 0.49558393585546473
+      },
+      {
+        "key": "dalle2",
+        "name": "DALL\u00b7E 2",
+        "score": 0.027280759066343307,
+        "calibrated": 0.4641224619963857,
+        "fpr": 0.5358775380036143,
+        "verdict": {
+          "label": "no evidence",
+          "level": 0
+        },
+        "n_calibration": 18814,
+        "peak": 5.0995167839573696e-05,
+        "energy": 0.6543332934379578,
+        "positive_fraction": 0.5076329195917438
+      }
+    ],
+    "generic": {
+      "score": 0.9660890825980653,
+      "fpr": 0.16774742213245453,
+      "verdict": {
+        "label": "no evidence",
+        "level": 0
+      },
+      "best": "Stable Diffusion 2",
+      "best_key": "sd2",
+      "n_calibration": 18814
+    }
+  }
+]

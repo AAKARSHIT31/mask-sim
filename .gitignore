@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# Python virtual environment.
+# Machine-specific and enormous (57,000+ files, ~800 MB). It is rebuilt from
+# requirements.txt and must never be committed.
+# ---------------------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# Byte-compiled / optimised files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ---------------------------------------------------------------------------
+# checkpoints.zip is simply an archive of the checkpoints/ directory, which is
+# already tracked. At 133 MB it exceeds GitHub's hard 100 MB per-file limit,
+# and it duplicates files the repository already contains.
+# ---------------------------------------------------------------------------
+checkpoints.zip
+
+# Datasets fetched by data_preparation.sh (tens of GB)
+processed_data/
+
+# Scratch and transfer artefacts
+Claude outputs/_xfer/
+_to_delete/
+*.part[0-9][0-9]
+
+# Environment and editor
+.env
+.idea/
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
